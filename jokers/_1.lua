@@ -1,11 +1,10 @@
-
-SMODS.Joker{ --1
+SMODS.Joker { --1
     key = "_1",
     config = {
         extra = {
             skipStopProb = 1,
             mult0 = 7,
-            mult_min = NaN,
+            mult_min = 4,
             mult_max = 8
         }
     },
@@ -24,7 +23,7 @@ SMODS.Joker{ --1
         y = 0
     },
     display_size = {
-        w = 71 * 1, 
+        w = 71 * 1,
         h = 95 * 1
     },
     cost = 4,
@@ -36,22 +35,21 @@ SMODS.Joker{ --1
     discovered = true,
     atlas = 'CustomJokers',
     pools = { ["jctransit_jctransit_jokers"] = true },
-    
+
     loc_vars = function(self, info_queue, card)
-        
-        return {vars = {card.ability.extra.skipStopProb}}
+        return { vars = { card.ability.extra.skipStopProb } }
     end,
-    
+
     calculate = function(self, card, context)
-        if context.cardarea == G.jokers and context.joker_main  then
+        if context.cardarea == G.jokers and context.joker_main then
             return {
                 mult = 7
             }
         end
-        if context.individual and context.cardarea == G.play  then
+        if context.individual and context.cardarea == G.play then
             if context.other_card:is_suit("Hearts") then
                 return {
-                    mult = pseudorandom('RANGE:4|8', 4, 8)
+                    mult = pseudorandom('RANGE:4|8', card.ability.extra.mult_min, card.ability.extra.mult_max)
                 }
             end
         end

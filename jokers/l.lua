@@ -1,5 +1,4 @@
-
-SMODS.Joker{ --L
+SMODS.Joker { --L
     key = "l",
     config = {
         extra = {
@@ -24,7 +23,7 @@ SMODS.Joker{ --L
         y = 0
     },
     display_size = {
-        w = 71 * 1, 
+        w = 71 * 1,
         h = 95 * 1
     },
     cost = 6,
@@ -36,19 +35,19 @@ SMODS.Joker{ --L
     discovered = true,
     atlas = 'CustomJokers',
     pools = { ["jctransit_jctransit_jokers"] = true },
-    
+
     loc_vars = function(self, info_queue, card)
-        
-        local new_numerator, new_denominator = SMODS.get_probability_vars(card, scoreProb, card.ability.extra.odds, 'j_jctransit_l') 
-        return {vars = {card.ability.extra.scoreProb, new_numerator, new_denominator}}
+        local new_numerator, new_denominator = SMODS.get_probability_vars(card, card.ability.extra.scoreProb,
+            card.ability.extra.odds, 'j_jctransit_l')
+        return { vars = { card.ability.extra.scoreProb, new_numerator, new_denominator } }
     end,
-    
+
     calculate = function(self, card, context)
-        if context.individual and context.cardarea == G.play  then
+        if context.individual and context.cardarea == G.play then
             if (context.other_card:get_id() == 14 or context.other_card:get_id() == 6) then
                 if SMODS.pseudorandom_probability(card, 'group_0_e3b5c689', 1, card.ability.extra.odds, 'j_jctransit_l', false) then
-                    SMODS.calculate_effect({chips = 14}, card)
-                    SMODS.calculate_effect({mult = 10.5}, card)
+                    SMODS.calculate_effect({ chips = 14 }, card)
+                    SMODS.calculate_effect({ mult = 10.5 }, card)
                 end
             end
         end

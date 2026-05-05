@@ -1,5 +1,4 @@
-
-SMODS.Joker{ --B
+SMODS.Joker { --B
     key = "b",
     config = {
         extra = {
@@ -22,7 +21,7 @@ SMODS.Joker{ --B
         y = 0
     },
     display_size = {
-        w = 71 * 1, 
+        w = 71 * 1,
         h = 95 * 1
     },
     cost = 6,
@@ -34,15 +33,15 @@ SMODS.Joker{ --B
     discovered = true,
     atlas = 'CustomJokers',
     pools = { ["jctransit_jctransit_jokers"] = true },
-    
+
     loc_vars = function(self, info_queue, card)
-        
-        local new_numerator, new_denominator = SMODS.get_probability_vars(card, cloneProbability, card.ability.extra.odds, 'j_jctransit_b') 
-        return {vars = {card.ability.extra.cloneProbability, new_numerator, new_denominator}}
+        local new_numerator, new_denominator = SMODS.get_probability_vars(card, card.ability.extra.cloneProbability,
+            card.ability.extra.odds, 'j_jctransit_b')
+        return { vars = { card.ability.extra.cloneProbability, new_numerator, new_denominator } }
     end,
-    
+
     calculate = function(self, card, context)
-        if context.cardarea == G.jokers and context.joker_main  then
+        if context.cardarea == G.jokers and context.joker_main then
             if true then
                 if SMODS.pseudorandom_probability(card, 'group_0_fdbaab3d', 1, card.ability.extra.odds, 'j_jctransit_b', false) then
                     local cards_to_copy = {}
@@ -59,13 +58,14 @@ SMODS.Joker{ --B
                         G.hand:emplace(copied_card)
                         copied_card.states.visible = nil
                         G.E_MANAGER:add_event(Event({
-                            func = function() 
+                            func = function()
                                 copied_card:start_materialize()
                                 return true
                             end
                         }))
                     end
-                    card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = "Copied Card to Hand!", colour = G.C.GREEN})
+                    card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil,
+                        { message = "Copied Card to Hand!", colour = G.C.GREEN })
                 end
             end
         end
