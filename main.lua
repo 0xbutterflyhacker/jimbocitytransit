@@ -26,24 +26,6 @@ local function load_folder(path)
     end
 end
 -- load the jokers
-if true then
-    assert(SMODS.load_file("jokers/metrocard.lua"))()
-    assert(SMODS.load_file("jokers/omny.lua"))()
-    assert(SMODS.load_file("jokers/l.lua"))()
-    assert(SMODS.load_file("jokers/_7.lua"))()
-    assert(SMODS.load_file("jokers/_42stshuttle.lua"))()
-    assert(SMODS.load_file("jokers/b.lua"))()
-    assert(SMODS.load_file("jokers/_6.lua"))()
-    assert(SMODS.load_file("jokers/mvianassau.lua"))()
-    assert(SMODS.load_file("jokers/_1.lua"))()
-    assert(SMODS.load_file("jokers/moneytrain.lua"))()
-    assert(SMODS.load_file("jokers/a.lua"))()
-    assert(SMODS.load_file("jokers/jaystmetrotech.lua"))()
-    assert(SMODS.load_file("jokers/q.lua"))()
-    assert(SMODS.load_file("jokers/stillwellave.lua"))()
-    assert(SMODS.load_file("jokers/_9.lua"))()
-    assert(SMODS.load_file("jokers/k.lua"))()
-end
 
 
 assert(SMODS.load_file("rarities.lua"))()
@@ -69,22 +51,6 @@ SMODS.ObjectType({
 SMODS.ObjectType({
     key = "jctransit_jctransit_jokers",
     cards = {
-        ["j_jctransit_metrocard"] = true,
-        ["j_jctransit_omny"] = true,
-        ["j_jctransit_l"] = true,
-        ["j_jctransit__7"] = true,
-        ["j_jctransit__42stshuttle"] = true,
-        ["j_jctransit_b"] = true,
-        ["j_jctransit__6"] = true,
-        ["j_jctransit_mvianassau"] = true,
-        ["j_jctransit__1"] = true,
-        ["j_jctransit_moneytrain"] = true,
-        ["j_jctransit_a"] = true,
-        ["j_jctransit_jaystmetrotech"] = true,
-        ["j_jctransit_q"] = true,
-        ["j_jctransit_stillwellave"] = true,
-        ["j_jctransit__9"] = true,
-        ["j_jctransit_k"] = true
     },
 })
 
