@@ -13,7 +13,7 @@ SMODS.Joker {
     loc_txt = {
         name = 'OMNY Card',
         text = { 'If deck has at most 35 cards, {C:chips}+30 {}Chips and {C:mult}+5 {}Mult',
-            'per Route Card held' }
+            'per Station Card owned' }
     },
     pos = { x = 0, y = 0 },
     rarity = 2,
@@ -21,8 +21,11 @@ SMODS.Joker {
     config = { extra = { chips = 30, mult = 5 } },
 
     calculate = function(self, card, context)
-        if context.other_joker then
-
+        if #G.playing_cards <= 35 and context.other_joker then
+            return {
+                chips = card.ability.extra.chips,
+                mult = card.ability.extra.mult
+            }
         end
     end
 }
