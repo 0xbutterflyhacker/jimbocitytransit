@@ -1,3 +1,11 @@
+SMODS.Atlas({
+    key = "CustomJokers",
+    path = "CustomJokers.png",
+    px = 71,
+    py = 95,
+    atlas_table = "ASSET_ATLAS"
+})
+
 SMODS.Joker { --MetroCard
     key = 'metrocard',
     loc_txt = {
