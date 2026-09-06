@@ -9,12 +9,19 @@ SMODS.Atlas({
 SMODS.Joker { --MetroCard
     key = 'metrocard',
     loc_txt = {
-        name = 'MetroCard'
+        name = 'MetroCard',
+        text = { '{C:mult}+2 {}Mult for each Route Card owned' }
     },
     atlas = 'CustomJokers',
     pos = { x = 0, y = 0 },
     rarity = 1,
-    cost = 2
+    cost = 2,
+    config = { extra = { mult = 2 } },
+    calculate = function(self, card, context)
+        if context.other_joker then
+            return { mult = card.ability.extra.mult }
+        end
+    end
 }
 
 SMODS.Joker {
@@ -33,6 +40,7 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if #G.playing_cards <= 35 and context.other_joker then
             return {
+                message = 'Fare Capped!',
                 chips = card.ability.extra.chips,
                 mult = card.ability.extra.mult
             }
