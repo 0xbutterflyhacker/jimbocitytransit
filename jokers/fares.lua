@@ -11,6 +11,7 @@ SMODS.Joker { --MetroCard
     loc_txt = {
         name = 'MetroCard'
     },
+    atlas = 'CustomJokers',
     pos = { x = 0, y = 0 },
     rarity = 1,
     cost = 2
@@ -23,6 +24,7 @@ SMODS.Joker {
         text = { 'If deck has at most 35 cards, {C:chips}+30 {}Chips and {C:mult}+5 {}Mult',
             'per Station Card owned' }
     },
+    atlas = 'CustomJokers',
     pos = { x = 0, y = 0 },
     rarity = 2,
     cost = 4,
