@@ -24,7 +24,6 @@ SMODS.Joker { --1 (Broadway-7th Ave Lcl)
     end,
 
     calculate = function(self, card, context)
-        print(context)
         if context.individual
             and context.cardarea == G.play
             and context.other_card:is_suit(card.ability.extra.suit) then
@@ -34,7 +33,17 @@ SMODS.Joker { --1 (Broadway-7th Ave Lcl)
         end
         if context.end_of_round and context.main_eval then
             if SMODS.pseudorandom_probability(card, 'example_string', card.ability.extra.numerator, card.ability.extra.denominator) then
-                G.jokers:emplace('nine')
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'after',
+                    delay = 0.4,
+                    func = function()
+                        play_sound('timpani')
+                        SMODS.add_card({ key = 'jctransit_nine' })
+                        card:juice_up(0.3, 0.5)
+                        return true
+                    end
+                }))
+                delay(0.6)
             end
         end
     end
@@ -55,7 +64,6 @@ SMODS.Joker { --2 (Broadway-7th Ave Exp)
     end,
 
     calculate = function(self, card, context)
-        print(context)
         if context.individual
             and context.cardarea == G.play
             and context.other_card:is_suit(card.ability.extra.suit) then
@@ -81,7 +89,6 @@ SMODS.Joker { --3 (Broadway-7th Ave Exp)
     end,
 
     calculate = function(self, card, context)
-        print(context)
         if context.individual
             and context.cardarea == G.play
             and context.other_card:is_suit(card.ability.extra.suit) then
@@ -113,7 +120,6 @@ SMODS.Joker { --9 (Broadway-7th Ave Lcl/Skip-Stop)
     end,
 
     calculate = function(self, card, context)
-        print(context)
         local ret = {}
         if context.individual
             and context.cardarea == G.play

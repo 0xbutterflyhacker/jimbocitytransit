@@ -18,14 +18,26 @@ SMODS.Joker { --MetroCard
     cost = 2,
     config = { extra = { mult = 2 } },
     calculate = function(self, card, context)
-        if context.other_joker then
+        if context.other_joker and context.other_joker.ability.extra.jbc_type == 'route' then
             return {
                 message = 'Swiped!',
-                message_card = context.other_jokerother_joker,
+                message_card = context.other_joker,
                 mult = card.ability.extra.mult
             }
         end
     end
+}
+
+SMODS.Joker { --Unlimited MetroCard
+    key = 'unlim_metrocard',
+    loc_txt = {
+        name = 'Unlimited MetroCard'
+    },
+    atlas = 'CustomJokers',
+    pos = { x = 0, y = 0 },
+    rarity = 2,
+    cost = 5,
+    config = { extra = {} }
 }
 
 SMODS.Joker {
