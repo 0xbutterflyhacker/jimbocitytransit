@@ -19,7 +19,11 @@ SMODS.Joker { --MetroCard
     config = { extra = { mult = 2 } },
     calculate = function(self, card, context)
         if context.other_joker then
-            return { mult = card.ability.extra.mult }
+            return {
+                message = 'Swiped!',
+                message_card = context.other_jokerother_joker,
+                mult = card.ability.extra.mult
+            }
         end
     end
 }
