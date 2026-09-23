@@ -38,7 +38,7 @@ SMODS.Joker { --1 (Broadway-7th Ave Lcl)
                     delay = 0.4,
                     func = function()
                         play_sound('timpani')
-                        SMODS.add_card({ key = 'jctransit_nine' })
+                        SMODS.add_card({ set = 'Joker', area = G.jokers, key = 'jctransit_nine' })
                         card:juice_up(0.3, 0.5)
                         return true
                     end

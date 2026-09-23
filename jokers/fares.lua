@@ -15,10 +15,15 @@ SMODS.Joker { --MetroCard
     atlas = 'CustomJokers',
     pos = { x = 0, y = 0 },
     rarity = 1,
-    cost = 2,
+    cost = 4,
     config = { extra = { mult = 2 } },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.mult } }
+    end,
     calculate = function(self, card, context)
-        if context.other_joker and context.other_joker.ability.extra.jbc_type == 'route' then
+        if context.other_joker
+            and context.card_area == G.jokers
+            and isRoute(context.other_joker) then
             return {
                 message = 'Swiped!',
                 message_card = context.other_joker,
