@@ -33,7 +33,7 @@ SMODS.Joker { --1 (Broadway-7th Ave Lcl)
             }
         end
         if context.end_of_round and context.main_eval then
-            if SMODS.pseudorandom_probability(card, 'example_string', card.ability.extra.numeratorB, card.ability.extra.denominatorB) then
+            if SMODS.pseudorandom_probability(card, 'example_string', card.ability.extra.numerator, card.ability.extra.denominator) then
                 G.jokers:emplace('nine')
             end
         end
