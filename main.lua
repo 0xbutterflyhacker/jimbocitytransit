@@ -6,7 +6,8 @@ JBC.optional_features = function()
     }
 end
 
-assert(SMODS.load_file('jokers/fares.lua'), 'Unable to load Fare Jokers!')()
-assert(SMODS.load_file('jokers/stations.lua'), 'Unable to load Station Jokers!')()
-assert(SMODS.load_file('jokers/a_division.lua'), 'Unable to load A Division Routes!')()
-assert(SMODS.load_file('jokers/b_division_bmt.lua'), 'Unable to load B Division - Former BMT Routes!')()
+assert(SMODS.load_file('src/jokers/fares.lua'), 'Unable to load Fare Jokers!')()
+assert(SMODS.load_file('src/jokers/stations.lua'), 'Unable to load Station Jokers!')()
+assert(SMODS.load_file('src/jokers/a_division.lua'), 'Unable to load A Division Routes!')()
+assert(SMODS.load_file('src/jokers/b_division_bmt.lua'), 'Unable to load B Division - Former BMT Routes!')()
+-- assert(SMODS.load_file('src/boosters.lua'), 'Unable to load Booster Packs!')()

@@ -25,10 +25,17 @@ SMODS.Joker { --N (Broadway Exp)
         if context.individual
             and context.cardarea == G.play
             and context.other_card:is_suit(card.ability.extra.suit) then
-            return {
-                mult = card.ability.extra.mult,
-                dollars = card.ability.extra.dollars
-            }
+            if #SMODS.find_card('coney_island') == 1 then
+                return {
+                    mult = card.ability.extra.mult * 2,
+                    dollars = card.ability.extra.dollars * 2
+                }
+            else
+                return {
+                    mult = card.ability.extra.mult,
+                    dollars = card.ability.extra.dollars
+                }
+            end
         end
     end
 }
