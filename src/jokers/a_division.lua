@@ -52,25 +52,30 @@ SMODS.Joker { --2 (Broadway-7th Ave Exp)
     key = 'two',
     loc_txt = {
         name = '2',
-        text = { '{C:mult}+#1# {}Mult for every {C:Hearts}Heart {}card played' }
+        text = { '{C:mult}+#1# {}Mult for every {C:Hearts}Heart {}card played',
+            '{C:chips}+#2# {}Chips for every 2 or 5 played' }
     },
     atlas = 'CustomJokersA',
     pos = { x = 0, y = 0 },
     rarity = 1,
     cost = 3,
-    config = { extra = { mult = 7, suit = 'Hearts', jbc_type = 'route' } },
+    config = { extra = { mult = 7, chips = 18, suit = 'Hearts', jbc_type = 'route' } },
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.mult, localize(card.ability.extra.suit, 'suits_singular') } }
+        return { vars = { card.ability.extra.mult, card.ability.extra.chips, localize(card.ability.extra.suit, 'suits_singular') } }
     end,
 
     calculate = function(self, card, context)
+        local ret = {}
         if context.individual
-            and context.cardarea == G.play
-            and context.other_card:is_suit(card.ability.extra.suit) then
-            return {
-                mult = card.ability.extra.mult
-            }
+            and context.cardarea == G.play then
+            if context.other_card:is_suit(card.ability.extra.suit) then
+                ret['mult'] = card.ability.extra.mult
+            end
+            if context.other_card:get_id() == 2 or context.other_card:get_id() == 5 then
+                ret['chips'] = card.ability.extra.chips
+            end
         end
+        return ret
     end
 }
 SMODS.Joker { --3 (Broadway-7th Ave Exp)
@@ -103,7 +108,7 @@ SMODS.Joker { --9 (Broadway-7th Ave Lcl/Skip-Stop)
     loc_txt = {
         name = '9',
         text = { '{C:mult}+#5# {}Mult for every {C:Hearts}Heart {}card played',
-            '#1# in #2# chance for {X:mult,C:white}x#6# {}Mult for every {C:Heart}Heart {}card played',
+            '#1# in #2# chance for {X:mult,C:white}x#6#{} Mult for every {C:Heart}Heart {}card played',
             '#3# in #4# chance to be discontinued' }
     },
     atlas = 'CustomJokersA',

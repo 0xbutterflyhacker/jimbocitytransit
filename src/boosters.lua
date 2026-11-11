@@ -10,7 +10,8 @@ SMODS.Booster { -- Normal Route Booster (3 choose 1)
     key = 'route_booster_n',
     loc_txt = {
         name = 'Route Booster Pack',
-        text = { 'Choose 1 of up to', '3 Routes to add to Jokers' }
+        text = { 'Choose 1 of up to', '3 Routes to add to Jokers' },
+        group_name = 'Route Pack'
     },
     weight = 1,
     atlas = 'CustomBoosters',
