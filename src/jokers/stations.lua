@@ -12,7 +12,7 @@ SMODS.Joker { -- Coney Island - Stillwell Ave
         name = 'Coney Island-Stillwell Ave',
         text = { 'Doubles the effects of D, F, N, and Q trains' }
     },
-    atlas = CustomJokersC,
+    atlas = 'CustomJokersC',
     pos = { x = 0, y = 0 },
     rarity = 1,
     cost = 3,
