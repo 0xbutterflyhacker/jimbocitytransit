@@ -82,15 +82,15 @@ SMODS.Joker { --3 (Broadway-7th Ave Exp)
     key = 'three',
     loc_txt = {
         name = '3',
-        text = { '{C:mult}+#1# {}Mult for every {C:Hearts}Heart {}card played' }
+        text = { '{C:mult}+#1# {}Mult for every {C:Hearts}Heart {}card played', '{X:mult,C:white}x#2#{} Mult if played had has', 'at most 3 cards' }
     },
     atlas = 'CustomJokersA',
     pos = { x = 0, y = 0 },
     rarity = 1,
     cost = 3,
-    config = { extra = { mult = 7, suit = 'Hearts', jbc_type = 'route' } },
+    config = { extra = { mult = 7, Xmult = 1.48, suit = 'Hearts', jbc_type = 'route' } },
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.mult, localize(card.ability.extra.suit, 'suits_singular') } }
+        return { vars = { card.ability.extra.mult, card.ability.extra.Xmult, localize(card.ability.extra.suit, 'suits_singular') } }
     end,
 
     calculate = function(self, card, context)
@@ -99,6 +99,13 @@ SMODS.Joker { --3 (Broadway-7th Ave Exp)
             and context.other_card:is_suit(card.ability.extra.suit) then
             return {
                 mult = card.ability.extra.mult
+            }
+        end
+        if context.joker_main
+            and context.cardarea == G.play
+            and #context.full_hand <= 3 then
+            return {
+                xmult = card.ability.extra.Xmult
             }
         end
     end
