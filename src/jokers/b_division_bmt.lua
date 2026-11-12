@@ -125,9 +125,34 @@ SMODS.Joker { --W (Broadway Lcl)
     end
 }
 
-SMODS.Joker {
-    key = 'j'
+SMODS.Joker { -- J (Nassau Lcl)
+    key = 'j',
+    loc_txt = {
+        name = 'J',
+        text = { 'Each played face card gains {C:mult}+#1# {}Mult' }
+    },
+    atlas = 'CustomJokersB1',
+    pos = { x = 0, y = 0 },
+    rarity = 1,
+    cost = 3,
+    config = { extra = { mult = 2 } },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.mult } }
+    end,
+
+    calculate = function(self, card, context)
+        if context.individual
+            and context.cardarea == G.play
+            and context.other_card:is_face(false) then
+            context.other_card.ability.perma_mult = (context.other_card.ability.perma_mult or 0) +
+                card.ability.extra.mult
+            return {
+                message = localize('k_upgrade_ex'),
+                colour = G.C.MULT
+            }
+        end
+    end
 }
-SMODS.Joker {
+SMODS.Joker { -- Z (Nassau Skip-Stop)
     key = 'z'
 }
