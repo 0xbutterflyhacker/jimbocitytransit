@@ -25,7 +25,7 @@ SMODS.Joker { --N (Broadway Exp)
         if context.individual
             and context.cardarea == G.play
             and context.other_card:is_suit(card.ability.extra.suit) then
-            if #SMODS.find_card('stillwell_ave') == 1 then
+            if #SMODS.find_card('jctransit_stillwell_ave') == 1 then
                 return {
                     mult = card.ability.extra.mult * 2,
                     dollars = card.ability.extra.dollars * 2
@@ -58,7 +58,7 @@ SMODS.Joker { --Q (Broadway Exp)
         if context.individual
             and context.cardarea == G.play
             and context.other_card:is_suit(card.ability.extra.suit) then
-            if #SMODS.find_card('stillwell_ave') == 1 then
+            if #SMODS.find_card('jctransit_stillwell_ave') == 1 then
                 return {
                     mult = card.ability.extra.mult * 2,
                     dollars = card.ability.extra.dollars * 2
@@ -144,8 +144,14 @@ SMODS.Joker { -- J (Nassau Lcl)
         if context.individual
             and context.cardarea == G.play
             and context.other_card:is_face(false) then
-            context.other_card.ability.perma_mult = (context.other_card.ability.perma_mult or 0) +
-                card.ability.extra.mult
+            if #SMODS.find_card('jctransit_z') == 1 then
+                context.other_card.ability.perma_mult = (context.other_card.ability.perma_mult or 0) +
+                    (card.ability.extra.mult * 1.5)
+            else
+                context.other_card.ability.perma_mult = (context.other_card.ability.perma_mult or 0) +
+                    card.ability.extra.mult
+            end
+
             return {
                 message = localize('k_upgrade_ex'),
                 colour = G.C.MULT
@@ -154,5 +160,39 @@ SMODS.Joker { -- J (Nassau Lcl)
     end
 }
 SMODS.Joker { -- Z (Nassau Skip-Stop)
-    key = 'z'
+    key = 'z',
+    loc_txt = {
+        name = "Z",
+        text = { 'Each played Jack gains {C:chips}+#1# {} chips',
+            '{X:mult,C:white}x1.5{} effect to J',
+            '{C:inactive}(Debuffed if J is not present){}' }
+    },
+    atlas = 'CustomJokersB1',
+    pos = { x = 0, y = 0 },
+    rarity = 1,
+    cost = 3,
+    config = { extra = { chips = 19.88 } },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.chips } }
+    end,
+
+    calculate = function(self, card, context)
+        if context.before or context.selling_card then
+            if #SMODS.find_card('jctransit_j') == 0 then
+                self.debuff = true
+            else
+                self.debuff = true
+            end
+        end
+        if context.individual
+            and context.cardarea == G.play
+            and context.other_card:get_id() == 11 then
+            context.other_card.ability.perma_bonus = (context.other_card.ability.perma_bonus or 0) +
+                card.ability.extra.chips
+            return {
+                message = 'Stop Skipped!',
+                colour = G.C.CHIPS
+            }
+        end
+    end
 }
