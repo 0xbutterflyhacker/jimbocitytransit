@@ -7,10 +7,23 @@ SMODS.Atlas({
 })
 
 SMODS.Joker { -- Coney Island - Stillwell Ave
-    key = 'Coney Island',
+    key = 'stillwell_ave',
     loc_txt = {
         name = 'Coney Island-Stillwell Ave',
         text = { 'Doubles the effects of D, F, N, and Q trains' }
+    },
+    atlas = 'CustomJokersC',
+    pos = { x = 0, y = 0 },
+    rarity = 1,
+    cost = 3,
+    config = { extra = { jbc_type = 'station' } }
+}
+
+SMODS.Joker {
+    key = 'bway_junction',
+    loc_txt = {
+        name = 'Broadway Junction',
+        text = { 'Doubles the effects of A, C, L, J, and Z trains' }
     },
     atlas = 'CustomJokersC',
     pos = { x = 0, y = 0 },

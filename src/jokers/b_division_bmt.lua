@@ -25,7 +25,7 @@ SMODS.Joker { --N (Broadway Exp)
         if context.individual
             and context.cardarea == G.play
             and context.other_card:is_suit(card.ability.extra.suit) then
-            if #SMODS.find_card('coney_island') == 1 then
+            if #SMODS.find_card('stillwell_ave') == 1 then
                 return {
                     mult = card.ability.extra.mult * 2,
                     dollars = card.ability.extra.dollars * 2
@@ -58,7 +58,7 @@ SMODS.Joker { --Q (Broadway Exp)
         if context.individual
             and context.cardarea == G.play
             and context.other_card:is_suit(card.ability.extra.suit) then
-            if #SMODS.find_card('coney_island') == 1 then
+            if #SMODS.find_card('stillwell_ave') == 1 then
                 return {
                     mult = card.ability.extra.mult * 2,
                     dollars = card.ability.extra.dollars * 2
@@ -108,7 +108,7 @@ SMODS.Joker { --W (Broadway Lcl)
     pos = { x = 0, y = 0 },
     rarity = 1,
     cost = 4,
-    config = { extra = { mult = 7, dollars = 2.3, suit = 'Diamonds', jbc_type = 'route' } },
+    config = { extra = { mult = 7, dollars = 1.6, suit = 'Diamonds', jbc_type = 'route' } },
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.mult, card.ability.extra.dollars, localize(card.ability.extra.suit, 'suits_singular') } }
     end,
@@ -123,4 +123,11 @@ SMODS.Joker { --W (Broadway Lcl)
             }
         end
     end
+}
+
+SMODS.Joker {
+    key = 'j'
+}
+SMODS.Joker {
+    key = 'z'
 }
